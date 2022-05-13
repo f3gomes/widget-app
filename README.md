@@ -8,12 +8,12 @@ Projeto desenvolvido durante a Next Level Week, realizada pela Rocketseat em 202
 
 ## Screenshots
 
-![App Screenshot](https://via.placeholder.com/300)
+![App Screenshot](https://raw.githubusercontent.com/fomes/widget-app/master/public/preview.png)
 
 
 ## Demonstração
 
-Insira um gif ou um link de alguma demonstração
+https://widget-form.netlify.app/
 
 
 ## Funcionalidades
