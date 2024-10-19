@@ -54,7 +54,7 @@ export function FeedbackContentStep({
       <form onSubmit={handleSubmitFeedback} className="my-4 w-full">
         <textarea
           onChange={(event) => setComment(event.target.value)}
-          className="min-w-[304px] w-full min-h-[112px] text-sm placeholder-zinc-400 text-zinc-100 border-zinc-600 bg-transparent rounded-md focus:border-purple-600 focus:ring-purple-500 focus:ring-1 resize-none scrollbar-thumb-zinc-700 scrollbar-track-transparent scrollbar-thin"
+          className="min-w-[304px] w-full min-h-[112px] text-sm placeholder-zinc-400 text-zinc-100 border-zinc-600 bg-transparent rounded-md focus:border-blue-600 focus:ring-blue-500 focus:ring-1 resize-none scrollbar-thumb-zinc-700 scrollbar-track-transparent scrollbar-thin"
           placeholder="Conte o seu problema com detalhes"
         />
 
@@ -67,7 +67,7 @@ export function FeedbackContentStep({
           <button
             type="submit"
             disabled={comment.length === 0}
-            className="p-2 bg-purple-600 rounded-md border-transparent flex-1 flex justify-center items-center text-sm hover:bg-purple-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-zinc-900 focus:ring-purple-600 transition-colors disabled:opacity-50 disabled:hover:bg-purple-600"
+            className="p-2 bg-blue-600 rounded-md border-transparent flex-1 flex justify-center items-center text-sm hover:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-zinc-900 focus:ring-blue-600 transition-colors disabled:opacity-50 disabled:hover:bg-blue-600"
           >
             Enviar feedback
           </button>
