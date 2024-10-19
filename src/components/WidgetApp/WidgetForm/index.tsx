@@ -1,14 +1,15 @@
-import bugImageUrl from "../assets/bug.svg"
-import ideaImageUrl from "../assets/idea.svg";
-import thoughtImageUrl from "../assets/thought.svg";
 import { useState } from "react";
+
+import bugImageUrl from "../../../assets/bug.png";
+import ideaImageUrl from "../../../assets/idea.svg";
+import thoughtImageUrl from "../../../assets/thought.svg";
 import { FeedbackTypeStep } from "./Steps/FeedbackTypeStep";
 import { FeedbackContentStep } from "./Steps/FeedbackContentStep";
 import { FeedbackSuccessStep } from "./Steps/FeedbackSuccessStep";
 
 export const feedbackTypes = {
   BUG: {
-    title: "Problema",
+    title: "Bug",
     image: {
       source: bugImageUrl,
       alt: "Imagem de um inseto",
@@ -16,7 +17,7 @@ export const feedbackTypes = {
   },
 
   IDEA: {
-    title: "Ideia",
+    title: "Sugestão",
     image: {
       source: ideaImageUrl,
       alt: "Imagem de uma lâmpada",
@@ -34,6 +35,7 @@ export const feedbackTypes = {
 
 // keyof: retorna as chaves
 // typeof: retorna o tipo
+
 export type FeedbackType = keyof typeof feedbackTypes;
 
 export function WidgetForm() {
@@ -48,7 +50,9 @@ export function WidgetForm() {
   return (
     <div className="bg-zinc-900 p-4 relative rounded-2xl mb-4 flex flex-col items-center shadow-lg w-[calc(100vw-2rem)] md:w-auto">
       {feedbackSent ? (
-        <FeedbackSuccessStep onFeedbackRestartRequested={handleRestartFeedback}/>
+        <FeedbackSuccessStep
+          onFeedbackRestartRequested={handleRestartFeedback}
+        />
       ) : (
         <>
           {!feedbackType ? (
@@ -64,14 +68,14 @@ export function WidgetForm() {
       )}
 
       <footer className="text-xs text-neutral-400">
-        Made with 💚 by{" "}
-        <a
+        Made with 💚
+        {/* <a
           target="_blank"
           className="underline underline-offset-2"
           href="https://github.com/fomes"
         >
           Felipe Gomes
-        </a>
+        </a> */}
       </footer>
     </div>
   );
