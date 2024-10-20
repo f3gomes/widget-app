@@ -1,34 +1,37 @@
-import { ArrowLeft, Camera } from "phosphor-react";
+import { ArrowLeft } from "phosphor-react";
 import { FormEvent, useState } from "react";
 import { FeedbackType, feedbackTypes } from "..";
 import { CloseButton } from "../../CloseButton";
 import { ScreenshotButton } from "../ScreenshotButton";
+import axios from "axios";
 
 interface FeedbackContentStepProps {
-  feedbackType: FeedbackType;
+  type: FeedbackType;
   onFeedbackRestartRequested: () => void;
   onFeedbackSent: () => void;
 }
 
 export function FeedbackContentStep({
-  feedbackType,
+  type,
   onFeedbackRestartRequested,
   onFeedbackSent,
 }: FeedbackContentStepProps) {
   const [screenshot, setScreenshot] = useState<string | null>(null);
   const [comment, setComment] = useState("");
 
-  const feedbackTypesInfo = feedbackTypes[feedbackType];
+  const feedbackTypesInfo = feedbackTypes[type];
 
-  function handleSubmitFeedback(event: FormEvent) {
+  async function handleSubmitFeedback(event: FormEvent) {
     event.preventDefault();
 
-    console.log({
-      screenshot,
-      comment,
-    });
-
-    onFeedbackSent();
+    try {
+      const url = `${import.meta.env.VITE_API_URL}/feedback/new`;
+      const data = { type, comment };
+      await axios.post(url, data);
+      onFeedbackSent();
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
