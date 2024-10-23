@@ -68,14 +68,7 @@ export function WidgetForm() {
       )}
 
       <footer className="text-xs text-neutral-400">
-        Made by{" "}
-        <a
-          target="_blank"
-          className="underline underline-offset-2"
-          href="https://github.com/fomes"
-        >
-          Felipe Gomes
-        </a>
+        FeedbackPro 🟢 Unifametro
       </footer>
     </div>
   );

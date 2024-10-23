@@ -19,6 +19,8 @@ export function FeedbackContentStep({
   const [screenshot, setScreenshot] = useState<string | null>(null);
   const [comment, setComment] = useState("");
 
+  const companyId = "36afcf28-487f-4665-90ac-5b3894b9e9e2";
+
   const feedbackTypesInfo = feedbackTypes[type];
 
   async function handleSubmitFeedback(event: FormEvent) {
@@ -26,7 +28,7 @@ export function FeedbackContentStep({
 
     try {
       const url = `${import.meta.env.VITE_API_URL}/feedback/new`;
-      const data = { type, comment };
+      const data = { type, comment, companyId };
       await axios.post(url, data);
       onFeedbackSent();
     } catch (error) {
