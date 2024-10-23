@@ -68,14 +68,14 @@ export function WidgetForm() {
       )}
 
       <footer className="text-xs text-neutral-400">
-        Made with 💚
-        {/* <a
+        Made by{" "}
+        <a
           target="_blank"
           className="underline underline-offset-2"
           href="https://github.com/fomes"
         >
           Felipe Gomes
-        </a> */}
+        </a>
       </footer>
     </div>
   );
