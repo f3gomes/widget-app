@@ -17,6 +17,7 @@ export function FeedbackContentStep({
   onFeedbackSent,
 }: FeedbackContentStepProps) {
   const [screenshot, setScreenshot] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
   const [comment, setComment] = useState("");
 
   const companyId = "36afcf28-487f-4665-90ac-5b3894b9e9e2";
@@ -27,12 +28,15 @@ export function FeedbackContentStep({
     event.preventDefault();
 
     try {
+      setIsLoading(true);
       const url = `${import.meta.env.VITE_API_URL}/feedback/new`;
       const data = { type, comment, companyId };
       await axios.post(url, data);
       onFeedbackSent();
     } catch (error) {
       console.log(error);
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -71,10 +75,10 @@ export function FeedbackContentStep({
 
           <button
             type="submit"
-            disabled={comment.length === 0}
+            disabled={comment.length === 0 || isLoading}
             className="p-2 bg-blue-600 rounded-md border-transparent flex-1 flex justify-center items-center text-sm hover:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-zinc-900 focus:ring-blue-600 transition-colors disabled:opacity-50 disabled:hover:bg-blue-600"
           >
-            Enviar feedback
+            {isLoading ? "Enviando..." : "Enviar feedback"}
           </button>
         </footer>
       </form>
