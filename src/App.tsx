@@ -1,13 +1,7 @@
 import Login from "./components/Login";
-import { Widget } from "./components/WidgetApp/Widget";
 
 function App() {
-  return (
-    <>
-      <Login />
-      <Widget />
-    </>
-  );
+  return <Login />;
 }
 
 export default App;
