@@ -2,25 +2,45 @@ import { Camera, Trash } from "phosphor-react";
 import html2canvas from "html2canvas";
 import { useState } from "react";
 import { Loading } from "./Loading";
+import ImageKit from "imagekit";
 
 interface ScreenshotButtonProps {
   screenshot: string | null;
-  onScreenshotTook: (screenshot: string | null) => void;
+  setScreenshot: (screenshot: string | null) => void;
 }
 
 export function ScreenshotButton({
   screenshot,
-  onScreenshotTook,
+  setScreenshot,
 }: ScreenshotButtonProps) {
   const [isTakeScreenshhot, setIsTakeScreenshot] = useState(false);
+
+  const imagekit = new ImageKit({
+    publicKey: import.meta.env.VITE_PUBLIC_KEY,
+    privateKey: import.meta.env.VITE_PRIVATE_KEY,
+    urlEndpoint: import.meta.env.VITE_URL_ENDPOINT,
+  });
 
   async function handleTakeScreenshot() {
     setIsTakeScreenshot(true);
     const canvas = await html2canvas(document.querySelector("html")!);
     const base64image = canvas.toDataURL("image/png");
 
-    onScreenshotTook(base64image);
-    setIsTakeScreenshot(false);
+    imagekit.upload(
+      {
+        file: base64image,
+        fileName: `screenshot.jpg`,
+      },
+      function (error, result: any) {
+        if (error) {
+          console.log(error);
+          setIsTakeScreenshot(false);
+        } else {
+          setScreenshot(result?.url);
+          setIsTakeScreenshot(false);
+        }
+      }
+    );
   }
 
   if (screenshot) {
@@ -28,7 +48,7 @@ export function ScreenshotButton({
       <button
         type="button"
         className="p-1 w-10 h-10 rounded-md border-transparent flex justify-end items-center text-zinc-400 hover:text-zinc-100 transition-colors"
-        onClick={() => onScreenshotTook(null)}
+        onClick={() => setScreenshot(null)}
         style={{
           backgroundImage: `url(${screenshot})`,
           backgroundPosition: "right bottom",
