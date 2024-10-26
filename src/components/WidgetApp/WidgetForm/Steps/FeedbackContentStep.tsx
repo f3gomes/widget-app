@@ -20,7 +20,7 @@ export function FeedbackContentStep({
   const [isLoading, setIsLoading] = useState(false);
   const [comment, setComment] = useState("");
 
-  const companyId = "36afcf28-487f-4665-90ac-5b3894b9e9e2";
+  const companyId = import.meta.env.VITE_COMPANY_ID;
 
   const feedbackTypesInfo = feedbackTypes[type];
 
